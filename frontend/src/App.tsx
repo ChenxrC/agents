@@ -3,6 +3,7 @@ import axios from 'axios';
 import AgentForm from './components/AgentForm';
 import AgentList from './components/AgentList';
 import TaskPanel from './components/TaskPanel';
+import './App.css';
 
 export default function App() {
   const [agents, setAgents] = useState<any[]>([]);
@@ -24,11 +25,32 @@ export default function App() {
   }, []);
 
   return (
-    <div style={{ padding: '1rem' }}>
-      <h1>多智能体控制台</h1>
-      <AgentForm onCreated={fetchData} />
-      <AgentList agents={agents} />
-      <TaskPanel tasks={tasks} onCreated={fetchData} />
+    <div className="app">
+      <header className="app-header">
+        <div className="header-content">
+          <h1 className="app-title">
+            <span className="title-icon">🤖</span>
+            多智能体控制台
+          </h1>
+          <p className="app-subtitle">AI Agent Management Platform</p>
+        </div>
+      </header>
+      
+      <main className="app-main">
+        <div className="dashboard">
+          <div className="dashboard-grid">
+            <div className="dashboard-card">
+              <AgentForm onCreated={fetchData} />
+            </div>
+            <div className="dashboard-card">
+              <AgentList agents={agents} />
+            </div>
+            <div className="dashboard-card full-width">
+              <TaskPanel tasks={tasks} onCreated={fetchData} />
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
   );
 } 
